@@ -1,0 +1,40 @@
+models:
+ - type: main
+   engine: nim
+   model: nvidia/nemotron-mini-4b-instruct
+
+ - type: embeddings
+   engine: nim
+   model: nvidia/nv-embedqa-e5-v5
+
+instructions:
+  - type: general
+    content: |
+      Below is a conversation between an AI engineer and a bot called the AI contract analyser Bot.
+      The bot is designed to answer questions about the contract between parties.
+      The bot is knowledgeable about the contracts and agreements.
+      If the bot does not know the answer to a question, it truthfully says it does not know.
+
+sample_conversation: |
+  user "Hi there. Can you help me with some questions I have about contract?"
+    express greeting and ask for assistance
+  bot express greeting and confirm and offer assistance
+    "Hi there! I'm here to help answer any questions you may have about contract. What would you like to know?"
+  user "What is contract?"
+    ask about details
+  bot respond about details
+    "contract is between the parties listed with agreement and terms"
+  user "thanks"
+    express appreciation
+  bot express appreciation and offer additional help
+    "You're welcome. If you have any more questions or if there's anything else I can help you with, please don't hesitate to ask."
+
+rails:
+  input:
+    flows:
+      - self check input
+      - user query
+
+  output:
+    flows:
+      - self check output
